@@ -74,13 +74,13 @@ pnpm install
 
 ### 3. Set Environment Variables
 Create a .env file in the root of the project and add the following variables.
-Get this from your PostgreSQL provider (e.g., Railway, Render)
+Get this from your PostgreSQL provider (e.g., Railway, Render), 
 DATABASE_URL=postgresql://user:password@localhost:5432/nerveconnect
 
-A strong, random string for signing JWTs
+A strong, random string for signing JWTs, 
 JWT_SECRET=your_super_secret_key_here
 
-Your Google AI Studio API Key for Gemini
+Your Google AI Studio API Key for Gemini, 
 GEMINI_API_KEY=your_gemini_api_key
 
 ### 4. Push Database Schema
@@ -90,3 +90,25 @@ npx prisma db push
 npm run dev
 
 ---
+
+## 🧪 Testing the App Visit these
+http://localhost:3000/signup - to create an account
+http://localhost:3000/frontdesk - for voice-based appointment booking
+http://localhost:3000/dashboard - for the doctor’s AI-powered prescription tool
+
+---
+
+Update the DATABASE_URL in .env accordingly.
+
+🧠 Gemini Integration (Google AI) Gemini is used for both:
+Extracting structured data from voice transcript (appointment intent)
+Generating prescription suggestions in the dashboard
+
+🛡️ Auth Flow JWT issued on login, stored in cookies
+Middleware checks token validity
+Protects patient/appointment API routes
+
+## 📌 Todo / Improvements
+✅ Add doctor availability calendar ⏳ Notifications (email/text)
+
+📃 License MIT License © 2025 Rishabh Anand
