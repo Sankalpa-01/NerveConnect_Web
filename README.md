@@ -51,6 +51,7 @@ NerveConnect is an intelligent, full-stack hospital management platform. It comb
 | 🔑 **Authentication** | JSON Web Tokens (JWT), Bcrypt |
 | 🚀 **Deployment** | Vercel (Frontend), Railway / Render (Database) |
 
+## 📂 Folder Structure (Simplified)
 NerveConnect/ ├── prisma/ # Prisma schema & migrations ├── public/ # Static assets (images, icons) ├── src/ │ ├── app/ │ │ ├── (auth)/ # Auth pages (Sign in/out/up) │ │ ├── (platform)/ # Protected app routes │ │ │ ├── dashboard/ # Doctor dashboard UI │ │ │ └── frontdesk/ # Voice bot UI │ │ ├── api/ # Next.js API routes (backend logic) │ │ └── ... │ ├── components/ # Reusable React components │ ├── lib/ # Utility functions (Prisma client, auth) │ ├── types/ # TypeScript type definitions │ └── ... ├── .env.example # Environment variable template ├── next.config.ts # Next.js config └── README.md # This file
 
 ---
@@ -66,20 +67,20 @@ cd NerveConnect
 ```
 ### 2. Install Dependencies
 npm install
-# or
+or
 yarn install
-# or
+or
 pnpm install
 
 ### 3. Set Environment Variables
-## Create a .env file in the root of the project and add the following variables.
-# Get this from your PostgreSQL provider (e.g., Railway, Render)
+Create a .env file in the root of the project and add the following variables.
+Get this from your PostgreSQL provider (e.g., Railway, Render)
 DATABASE_URL=postgresql://user:password@localhost:5432/nerveconnect
 
-# A strong, random string for signing JWTs
+A strong, random string for signing JWTs
 JWT_SECRET=your_super_secret_key_here
 
-# Your Google AI Studio API Key for Gemini
+Your Google AI Studio API Key for Gemini
 GEMINI_API_KEY=your_gemini_api_key
 
 ### 4. Push Database Schema
@@ -89,5 +90,3 @@ npx prisma db push
 npm run dev
 
 ---
-
-## 📂 Folder Structure (Simplified)
