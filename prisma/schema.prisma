@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  username  String    @unique
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  patients  Patient[]
+}
+
+model Patient {
+  id        String       @id @default(uuid())
+  name      String
+  age       Int
+  phone     String
+  email     String
+  address   String
+  createdAt DateTime     @default(now())
+  user      User         @relation(fields: [userId], references: [id])
+  userId    String
+  appointments Appointment[]
+  diseases     Disease[]
+}
+
+model Appointment {
+  id          String     @id @default(uuid())
+  date        DateTime
+  diagnosis   String
+  symptoms    String
+  temperature Float?
+  bloodPressure String?
+  heartRate   Int?
+  oxygenSaturation Int?
+  instructions String?
+  followUpInDays Int?
+  patient     Patient   @relation(fields: [patientId], references: [id])
+  patientId   String
+  aiAnalysis Json?
+}
+
+model Disease {
+  id        String   @id @default(uuid())
+  name      String
+  patient   Patient  @relation(fields: [patientId], references: [id])
+  patientId String
+}
+
+model VoicePatient {
+  id               String               @id @default(uuid())
+  name             String
+  voiceAppointments VoiceAppointment[]
+}
+
+model VoiceDoctor {
+  id               String               @id @default(uuid())
+  name             String
+  voiceAppointments VoiceAppointment[]
+}
+
+model VoiceAppointment {
+  id         String        @id @default(uuid())
+  patient    VoicePatient  @relation(fields: [patientId], references: [id])
+  patientId  String
+  doctor     VoiceDoctor   @relation(fields: [doctorId], references: [id])
+  doctorId   String
+  date       DateTime
+  createdAt  DateTime      @default(now())
+}
