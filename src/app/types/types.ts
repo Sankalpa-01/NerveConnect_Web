@@ -1,5 +1,3 @@
-
-
 // Base interface for common fields
 interface BaseEntity {
   id: string;
@@ -53,7 +51,7 @@ export interface Disease extends BaseEntity {
 
 export interface voicePatient extends BaseEntity {
   name: string;
-  voiceAppointments?: voiceAppointment[]; 
+  voiceAppointments?: voiceAppointment[];
 }
 
 // Voice Doctor Model
